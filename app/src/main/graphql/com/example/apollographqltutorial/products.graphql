@@ -1,0 +1,67 @@
+query fetchProductsByCategory($categoryId: [String]!) {
+    products(filter: {category_id: {in: $categoryId}}) {
+        items{
+            ...ProductData
+        }
+    }
+}
+
+
+fragment ProductData on ProductInterface {
+    id
+    name
+    sku
+    created_at
+    url_key
+    is_favorited
+    new_from_date
+    new_to_date
+    media_gallery {
+        url
+    }
+    small_image {
+        url
+    }
+    image {
+        url
+    }
+    thumbnail {
+        url
+    }
+    only_x_left_in_stock
+    stock_status
+    price_range {
+        minimum_price {
+            final_price {
+                currency
+                value
+            }
+            regular_price {
+                currency
+                value
+            }
+            discount {
+                amount_off
+                percent_off
+            }
+        }
+        maximum_price {
+            final_price {
+                currency
+                value
+            }
+            regular_price {
+                currency
+                value
+            }
+            discount {
+                amount_off
+                percent_off
+            }
+        }
+    }
+    special_price
+    weight_base_unit
+    weight_increment_step
+}
+
